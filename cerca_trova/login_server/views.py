@@ -23,6 +23,7 @@ def account_registration(request):
 def account_authentication(request):
     user_id = request.data['user_id']
     password = request.data['password']
+    print(user_id)
     profile_data = User.objects.filter(email_id=user_id, password=password)
     if len(profile_data) > 0:
         serializer = UserSerializer(profile_data[0])
