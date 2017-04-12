@@ -6,4 +6,4 @@ class EmergencySerializer(serializers.ModelSerializer):
     """Serializer for Emergency Model"""
     class Meta :
         model = emergency
-        fields = ('timestamp', 'user_adhaar_number', 'emergency_responder_id','emergency_type', 'status')
+        fields = ('_id', 'timestamp', 'user_adhaar_number', 'emergency_responder_id','emergency_type', 'status')

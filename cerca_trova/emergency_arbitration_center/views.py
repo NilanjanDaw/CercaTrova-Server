@@ -7,8 +7,14 @@ from emergency_arbitration_center.serializer import EmergencySerializer
 from login_server.models import User
 from login_server.serializer import UserSerializer
 
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 def notifications(request):
+
+    if request.method == 'GET':
+        data = emergency.objects.all()
+        serializer = EmergencySerializer(data, many=True)
+        return Response(serializer.data)
+
     if request.method == 'POST':
         user_adhaar_number = request.data['user_adhaar_number']
         profile_data = User.objects.filter(adhaar_number=user_adhaar_number)
