@@ -82,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'cerca_trova',
-        'USER': 'nilanjan',
-        'PASSWORD': '$nilanjan1',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '',
     }
