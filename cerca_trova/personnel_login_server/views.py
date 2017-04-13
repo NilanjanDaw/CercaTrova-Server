@@ -2,18 +2,18 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from login_server.models import User
-from login_server.serializer import UserSerializer
+from personnel_login_server.models import EmergencyPersonnel
+from personnel_login_server.serializer import EmergencyPersonnelSerializer
 
 @api_view(['GET', 'POST'])
 def account_registration(request):
     if request.method == 'GET':
-        data = User.objects.all()
-        serializer = UserSerializer(data, many=True)
+        data = EmergencyPersonnel.objects.all()
+        serializer = EmergencyPersonnelSerializer(data, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = UserSerializer(data=request.data)
+        serializer = EmergencyPersonnelSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -21,11 +21,11 @@ def account_registration(request):
 
 @api_view(['POST'])
 def account_authentication(request):
-    user_id = request.data['user_id']
+    personnel_id = request.data['personnel_id']
     password = request.data['password']
-    print(user_id)
-    profile_data = User.objects.filter(email_id=user_id, password=password)
+    print(personnel_id)
+    profile_data = EmergencyPersonnel.objects.filter(personnel_id=personnel_id, password=password)
     if len(profile_data) > 0:
-        serializer = UserSerializer(profile_data[0])
+        serializer = EmergencyPersonnelSerializer(profile_data[0])
         return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
     return Response(None, status=status.HTTP_404_NOT_FOUND)

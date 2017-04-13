@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'login_server',
     'emergency_arbitration_center',
+    'personnel_login_server',
     'rest_framework',
     'rest_framework_gis',
 ]

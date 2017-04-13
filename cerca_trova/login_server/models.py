@@ -9,7 +9,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=255, blank=False)
     last_name = models.CharField(max_length=255, blank=False)
     email_id = models.CharField(max_length=255, blank=False, unique=True)
-    contact_number = models.IntegerField(blank=False)
+    contact_number = models.BigIntegerField(blank=False)
     address = models.CharField(max_length=512, blank=False)
     age = models.IntegerField()
     gender = models.CharField(max_length=1)

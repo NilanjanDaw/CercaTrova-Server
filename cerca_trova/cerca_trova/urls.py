@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('login_server.urls')),
     url(r'^', include('emergency_arbitration_center.urls')),
+    url(r'^', include('personnel_login_server.urls')),
 ]
