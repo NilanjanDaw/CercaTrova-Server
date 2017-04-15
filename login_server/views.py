@@ -29,3 +29,19 @@ def account_authentication(request):
         serializer = UserSerializer(profile_data[0])
         return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
     return Response(None, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['POST'])
+def update_account_information(request):
+    user_id = request.data['user_id']
+    print(request.data['user_id'])
+    try:
+        profile_data = User.objects.get(email_id=user_id)
+    except MyModel.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if 'location' in request.data:
+        profile_data.location = request.data['location']
+    if 'device_id' in request.data:
+        profile_data.device_id = request.data['device_id']
+    profile_data.save()
+    serializer = UserSerializer(profile_data)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)

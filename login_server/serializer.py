@@ -6,5 +6,5 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta():
         model = User
         fields = ('adhaar_number','first_name','last_name',
-            'email_id', 'contact_number', 'address', 'age', 'gender',
+            'email_id', 'contact_number', 'address', 'age', 'gender','device_id',
             'blood_group', 'password', 'location')
