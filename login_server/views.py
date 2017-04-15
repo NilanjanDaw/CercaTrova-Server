@@ -9,7 +9,7 @@ from login_server.serializer import UserSerializer
 def account_registration(request):
     if request.method == 'GET':
         data = User.objects.all()
-        serializer = UserSerializer(data, many=True)
+        serializer = UserSerializer(data=data, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
@@ -36,7 +36,7 @@ def update_account_information(request):
     print(request.data['user_id'])
     try:
         profile_data = User.objects.get(email_id=user_id)
-    except MyModel.DoesNotExist:
+    except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     if 'location' in request.data:
         profile_data.location = request.data['location']

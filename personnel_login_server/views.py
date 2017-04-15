@@ -9,7 +9,7 @@ from personnel_login_server.serializer import EmergencyPersonnelSerializer
 def account_registration(request):
     if request.method == 'GET':
         data = EmergencyPersonnel.objects.all()
-        serializer = EmergencyPersonnelSerializer(data, many=True)
+        serializer = EmergencyPersonnelSerializer(data=data, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
@@ -29,3 +29,21 @@ def account_authentication(request):
         serializer = EmergencyPersonnelSerializer(profile_data[0])
         return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
     return Response(None, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['POST'])
+def update_account_information(request):
+    personnel_id = request.data['personnel_id']
+    print(request.data['personnel_id'])
+    try:
+        profile_data = EmergencyPersonnel.objects.get(personnel_id=personnel_id)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if 'location' in request.data:
+        profile_data.location = request.data['location']
+    if 'device_id' in request.data:
+        profile_data.device_id = request.data['device_id']
+    if 'status' in request.data:
+        profile_data.status = request.data['status']
+    profile_data.save()
+    serializer = EmergencyPersonnelSerializer(profile_data)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)

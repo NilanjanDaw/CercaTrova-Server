@@ -5,5 +5,5 @@ class EmergencyPersonnelSerializer(serializers.ModelSerializer):
     class Meta():
         model = EmergencyPersonnel
         fields = ('personnel_id', 'adhaar_number', 'first_name',
-                'last_name', 'contact_number', 'car_number',
-                'responder_type','password', 'location',)
+                'last_name', 'contact_number', 'car_number','device_id',
+                'status', 'responder_type','password', 'base_station', 'location',)

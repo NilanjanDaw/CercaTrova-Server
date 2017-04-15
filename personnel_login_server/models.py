@@ -13,6 +13,6 @@ class EmergencyPersonnel(models.Model):
     responder_type = models.IntegerField(blank=False)
     base_station = models.CharField(max_length=255, blank=False, default="")
     password = models.CharField(max_length=255, blank=False)
-    status = models.IntegerField(default=0)
+    status = models.IntegerField(default=0, blank=False)
     device_id = models.CharField(max_length=1024, blank=True)
-    location = models.PointField(blank=True, null=True)
+    location = models.PointField(blank=True, null=True, verbose_name="location")
