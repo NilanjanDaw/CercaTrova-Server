@@ -24,13 +24,12 @@ def notifications(request):
         user_adhaar_number = request.data['user_adhaar_number']
         profile_data = User.objects.filter(adhaar_number=user_adhaar_number)
         if len(profile_data) > 0:
-            print(profile_data[0].adhaar_number)
             emergency_location = GEOSGeometry(request.data['location'])
             assignment_list = EmergencyPersonnel.objects.filter(location__distance_lte=(emergency_location, D(m=2000))) \
                 .annotate(distance=Distance('location', emergency_location)) \
                 .order_by('distance')
             if len(assignment_list) > 0:
-                assignment_serialized = EmergencyPersonnelSerializer(assignment_list, many=True)
+                assignment_serialized = EmergencyPersonnelSerializer(assignment_list[0])
                 serializer = EmergencySerializer(data=request.data)
                 if serializer.is_valid():
                     serializer.save()

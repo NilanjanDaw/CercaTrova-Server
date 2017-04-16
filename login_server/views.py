@@ -9,7 +9,7 @@ from login_server.serializer import UserSerializer
 def account_registration(request):
     if request.method == 'GET':
         data = User.objects.all()
-        serializer = UserSerializer(data=data, many=True)
+        serializer = UserSerializer(data, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
@@ -33,7 +33,6 @@ def account_authentication(request):
 @api_view(['POST'])
 def update_account_information(request):
     user_id = request.data['user_id']
-    print(request.data['user_id'])
     try:
         profile_data = User.objects.get(email_id=user_id)
     except User.DoesNotExist:

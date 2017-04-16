@@ -9,7 +9,7 @@ from personnel_login_server.serializer import EmergencyPersonnelSerializer
 def account_registration(request):
     if request.method == 'GET':
         data = EmergencyPersonnel.objects.all()
-        serializer = EmergencyPersonnelSerializer(data=data, many=True)
+        serializer = EmergencyPersonnelSerializer(data, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
