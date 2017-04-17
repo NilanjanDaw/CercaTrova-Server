@@ -25,7 +25,9 @@ def notifications(request):
         profile_data = User.objects.filter(adhaar_number=user_adhaar_number)
         if len(profile_data) > 0:
             emergency_location = GEOSGeometry(request.data['location'])
-            assignment_list = EmergencyPersonnel.objects.filter(location__distance_lte=(emergency_location, D(m=2000))) \
+            emergency_type = request.data['emergency_type']
+            assignment_list = EmergencyPersonnel.objects.filter(location__distance_lte=(emergency_location, D(m=2000)), \
+                status=1, responder_type=emergency_type) \
                 .annotate(distance=Distance('location', emergency_location)) \
                 .order_by('distance')
             if len(assignment_list) > 0:
