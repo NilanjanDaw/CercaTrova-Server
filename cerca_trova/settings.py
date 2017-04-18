@@ -90,9 +90,6 @@ DATABASES = {
     }
 }
 
-# Firebase Cloud Messaging API key
-#FCM_APIKEY  = "AAAAcQkgiSo:APA91bHUROI1OHWn5N84MXe_WGeT_IcURezAayUSMddimoTccNP01aBZmpfydqIviAiBNM_fHOTVqz-P29YIugQ38UgrcDt5NXE5-AnzHjY_PhBKP5szfQXEaXkWYDDYtzVxxgVJw94f"
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -131,3 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+FCM_URL = "https://fcm.googleapis.com/fcm/send"
+
+FCM_APIKEY = "AAAAcQkgiSo:APA91bHUROI1OHWn5N84MXe_WGeT_IcURezAayUSMddimoTccNP01aBZmpfydqIviAiBNM_fHOTVqz-P29YIugQ38UgrcDt5NXE5-AnzHjY_PhBKP5szfQXEaXkWYDDYtzVxxgVJw94f"
