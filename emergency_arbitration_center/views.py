@@ -17,7 +17,7 @@ from rest_framework.renderers import JSONRenderer
 
 
 @api_view(['GET', 'POST'])
-def notifications(request):
+def getNotification(request):
 
     if request.method == 'GET':
         data = emergency.objects.all()
@@ -36,7 +36,7 @@ def notifications(request):
                 .order_by('distance')
             if len(assignment_list) > 0:
                 assignment_serialized = EmergencyPersonnelSerializer(assignment_list[0])
-                sendMessageToPersonnel(assignment_list[0], profile_data[0])
+                informationExchange(assignment_list[0], profile_data[0])
                 serializer = EmergencySerializer(data=request.data)
                 if serializer.is_valid():
                     serializer.save()
@@ -45,7 +45,23 @@ def notifications(request):
                     print(serializer.errors)
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
-def sendMessageToPersonnel(personnel, user):
+@api_view(['POST'])
+def acceptEmergency(request):
+    user_adhaar_number = request.data["user_adhaar_number"]
+    personnel_id = request.data["personnel_id"]
+    emergencyData = emergency.objects.filter(user_adhaar_number=user_adhaar_number,\
+                    status=0).order_by('-timestamp')
+    personnel = EmergencyPersonnel.objects.filter(personnel_id=personnel_id)
+    if len(emergencyData) > 0 and len(personnel) > 0:
+        emergencyData[0].emergency_responder_id = personnel[0].personnel_id
+        emergencyData[0].status = 1
+        emergencyData[0].save()
+        personnel[0].status = 0
+        personnel[0].save()
+        return  Response(status=status.HTTP_201_CREATED)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+def informationExchange(personnel, user):
     headers = {
     'authorization': "key=" + str(settings.FCM_APIKEY),
     'content-type': "application/json",

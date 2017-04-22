@@ -20,10 +20,9 @@ def account_registration(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
-def account_authentication(request):
+def validate_client(request):
     user_id = request.data['user_id']
     password = request.data['password']
-    print(user_id)
     profile_data = User.objects.filter(email_id=user_id, password=password)
     if len(profile_data) > 0:
         serializer = UserSerializer(profile_data[0])
