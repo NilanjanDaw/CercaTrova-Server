@@ -1,0 +1,446 @@
+{
+	"variables": [],
+	"info": {
+		"name": "emergency_arbitration_center",
+		"_postman_id": "ae826913-331b-a196-da34-9e803fcad50a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "unit P2341 active",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/personnel_login_server/update/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "personnel_id",
+							"value": "P2341",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT( 22.574746 88.433815)",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "status",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "unit P7943 active",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/personnel_login_server/update/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "personnel_id",
+							"value": "P7943",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.575756 88.431401)",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "status",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "unit P7944 active",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/personnel_login_server/update/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "personnel_id",
+							"value": "P7944",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.574171 88.431927)",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "status",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "emergency-1 notify",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;",
+							"",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Responding unit\"] = jsonData.personnel_id === \"P7944\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/emergency/notify/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_adhaar_number",
+							"value": "123456789123",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "emergency_type",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.573934 88.432614)",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "unit P7944 e-1 accept",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/emergency/accept/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_adhaar_number",
+							"value": "123456789123",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "personnel_id",
+							"value": "P7944",
+							"type": "text",
+							"enabled": true
+						},
+						{}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "emergency-2 notify",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Responding unit\"] = jsonData.personnel_id === \"P2341\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/emergency/notify/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_adhaar_number",
+							"value": "666655554444",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "emergency_type",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.574766 88.434716)",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "unit P2341 e-2 accept",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/emergency/accept/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_adhaar_number",
+							"value": "666655554444",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "personnel_id",
+							"value": "P2341",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "emergency-3 notify",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Responding unit\"] = jsonData.personnel_id === \"P7943\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/emergency/notify/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_adhaar_number",
+							"value": "222244455555",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "emergency_type",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.57534 88.433751)",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "unit P7943 e-3 accept",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/emergency/accept/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_adhaar_number",
+							"value": "222244455555",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "personnel_id",
+							"value": "P7943",
+							"type": "text",
+							"enabled": true
+						},
+						{}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "emergency-4 notify (should fail)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 400\"] = responseCode.code === 400;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/emergency/notify/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_adhaar_number",
+							"value": "123456789011",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "emergency_type",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.574766 88.434716)",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

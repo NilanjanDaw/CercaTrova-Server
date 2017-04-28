@@ -1,0 +1,216 @@
+{
+	"variables": [],
+	"info": {
+		"name": "test_runner_user",
+		"_postman_id": "2b3c75a0-5ea0-e366-fb8a-f99d9f5d6c03",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user authentication (valid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 202\"] = responseCode.code === 202;",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"testing email_id\"] = jsonData.email_id === \"a@world.com\";",
+							"tests[\"testing adhaar_no\"] = jsonData.adhaar_number === \"123456789011\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/login_server/account_authentication/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "a@world.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "abc123",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "user account authentication (invalid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/login_server/account_authentication/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "b@world.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "abc123",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "user device id update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"device_id\"] = jsonData.device_id = \"e6f949erg+e1gerg1er9g68gr1bre99q19r128rfeww9gwe1g11qwcd06wve1f0ef6rw4gef1qe9f9e4wf1\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/login_server/update/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "a@world.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "device_id",
+							"value": "e6f949erg+e1gerg1er9g68gr1bre99q19r128rfeww9gwe1g11qwcd06wve1f0ef6rw4gef1qe9f9e4wf1",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "user location update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"latitude\"] = jsonData.location.coordinates[0] === 245.343434;",
+							"tests[\"longitude\"] = jsonData.location.coordinates[1] === 67;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/login_server/update/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "a@world.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(245.343434 67)",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "user status update (invalid cred)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/login_server/update/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "b@world.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "device_id",
+							"value": "e6f949erg+e1gerg1er9g68gr1bre99q19r128rfeww9gwe1g11qwcd06wve1f0ef6rw4gef1qe9f9e4wf1",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "wrong update credential"
+			},
+			"response": []
+		}
+	]
+}

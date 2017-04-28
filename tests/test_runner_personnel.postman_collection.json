@@ -1,0 +1,177 @@
+{
+	"variables": [],
+	"info": {
+		"name": "test_runner_personnel",
+		"_postman_id": "37c2ce67-c21c-17d0-6c6f-f69dbdc8c7c3",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "personnel account authentication (valid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"first_name\"] = jsonData.first_name === \"debapriya\";",
+							"tests[\"adhaar\"] = jsonData.adhaar_number === \"123412451250\";",
+							"",
+							"tests[\"Status code is 202\"] = responseCode.code === 202;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/personnel_login_server/account_authentication/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "personnel_id",
+							"value": "P7942",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "abc123",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "personnel account authentication (invalid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/personnel_login_server/account_authentication/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "personnel_id",
+							"value": "P7940",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "abc123",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "personnel device id update check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"first_name\"] = jsonData.first_name === \"aloo\";",
+							"tests[\"device_id\"] = jsonData.device_id === \"woubgwg03th008hgnn2ogugh082gn4gugb49ttbugbg42ofhh2rgo2ghnvheisiee805y585\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/personnel_login_server/update/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "personnel_id",
+							"value": "P2341",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "device_id",
+							"value": "woubgwg03th008hgnn2ogugh082gn4gugb49ttbugbg42ofhh2rgo2ghnvheisiee805y585",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "personnel status check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"first_name\"] = jsonData.first_name === \"aloo\";",
+							"tests[\"status\"] = jsonData.status === 1;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/personnel_login_server/update/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "personnel_id",
+							"value": "P2341",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "status",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
