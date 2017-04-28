@@ -4,6 +4,7 @@ from django.contrib.gis.db import models
 
 class EmergencyPersonnel(models.Model):
     """Database for emergency personnel"""
+    last_update = models.DateTimeField(auto_now=True)
     personnel_id = models.CharField(max_length=255, primary_key=True, unique=True)
     adhaar_number = models.CharField(max_length=12, unique=True)
     first_name = models.CharField(max_length=255, blank=False)
