@@ -82,7 +82,7 @@ ALLOWED_HOSTS = [
 ]
 ```
 - cd to repository root folder. Migrate databases and start Server
-```python
+```bash
 $ python manage.py migrate
 $ python manage.py runserver 0.0.0.0:8000
 ```
