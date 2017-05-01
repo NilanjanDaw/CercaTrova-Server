@@ -41,6 +41,8 @@ def getNotification(request):
                 .annotate(distance=Distance('location', emergency_location)) \
                 .order_by('distance')
             if len(assignment_list) > 0:
+                assignment_list[0].status = 2
+                assignment_list[0].save()
                 assignment_serialized = EmergencyPersonnelSerializer(assignment_list[0])
                 informationExchange(assignment_list[0], profile_data[0])
                 serializer = EmergencySerializer(data=request.data)
@@ -78,4 +80,3 @@ def informationExchange(personnel, user):
     json = JSONRenderer().render(serializer.data)
     payload = "{ \"data\":" + str(json) + ",\"priority\" : \"high\",\"to\" : \"" + to + "\"}"
     response = requests.request("POST", settings.FCM_URL, data=payload, headers=headers)
-    print(response.text)
