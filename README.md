@@ -17,7 +17,11 @@ $ chmod 755 <file_name>.run
 $ sudo ./<file_name>.run
 ```
 - Install PostGIS  v2.3.2 using stackbuilder bundled with above installer.Select spatial extension and run the rest of the wizard.
--  (Windows Only) Download and install OSgeo4W.
+- (Windows Only) Download and install OSgeo4W.
+- (Linux Only) Install GDAL
+```bash
+sudo apt-get install libgdal-dev
+```
 - Start psql command prompt. Create a new database named cerca_trova and a new user named admin with password 'admin' and grant all rights to database cerca_trova.
 
 ```sql
@@ -62,8 +66,9 @@ $ pip install virtualenv
 $ cd <location>
 $ mkdir <folder_name>
 ```
-- cd to folder and enable python virtualenv
+- cd to folder and create and enable python virtualenv
 ```bash
+$ virtualenv <folder_name> 
 $ source /bin/activate
 ```
 - Pull the project repository from remote server
