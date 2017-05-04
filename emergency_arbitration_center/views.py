@@ -7,6 +7,7 @@ from django.contrib.gis.geos import GEOSGeometry
 from django.contrib.gis.db.models.functions import Distance
 from django.conf import settings
 from django.utils import timezone
+from django.db import transaction
 
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -53,15 +54,18 @@ def getNotification(request):
             emergency_type = request.data['emergency_type']
 
             """ finds the nearest active unit within 5km with a matching responder_type"""
-            assignment_list = EmergencyPersonnel.objects.filter(last_update__gte=time_threshold, \
-                location__distance_lte=(emergency_location, D(m=5000)), \
-                status=1, responder_type=emergency_type) \
-                .annotate(distance=Distance('location', emergency_location)) \
-                .order_by('distance')
+            with transaction.atomic():
+                assignment_list = EmergencyPersonnel.objects.select_for_update()\
+                    .filter(last_update__gte=time_threshold, \
+                    location__distance_lte=(emergency_location, D(m=5000)), \
+                    status=1, responder_type=emergency_type) \
+                    .annotate(distance=Distance('location', emergency_location)) \
+                    .order_by('distance')[:1]
+                if len(assignment_list) > 0:
+                    assignment_list[0].status = 2
+                    assignment_list[0].save()
             if len(assignment_list) > 0:
                 # if an unit is found it is inactivated and a notified
-                assignment_list[0].status = 2
-                assignment_list[0].save()
                 assignment_serialized = EmergencyPersonnelSerializer(assignment_list[0])
                 informationExchange(assignment_list[0], profile_data[0])
                 serializer = EmergencySerializer(data=request.data)
