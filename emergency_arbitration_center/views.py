@@ -60,12 +60,14 @@ def getNotification(request):
                     location__distance_lte=(emergency_location, D(m=5000)), \
                     status=1, responder_type=emergency_type) \
                     .annotate(distance=Distance('location', emergency_location)) \
-                    .order_by('distance')[:1]
+                    .order_by('distance', 'personnel_id')[:1]
                 if len(assignment_list) > 0:
                     assignment_list[0].status = 2
                     assignment_list[0].save()
+            for personnel in assignment_list:
+                print("Unit ID=%s distance=%s" % (personnel.personnel_id, personnel.distance))
             if len(assignment_list) > 0:
-                # if an unit is found it is inactivated and a notified
+                # if an unit is found it is inactivated and notified
                 assignment_serialized = EmergencyPersonnelSerializer(assignment_list[0])
                 informationExchange(assignment_list[0], profile_data[0])
                 serializer = EmergencySerializer(data=request.data)

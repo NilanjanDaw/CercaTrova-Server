@@ -1,0 +1,320 @@
+{
+	"variables": [],
+	"info": {
+		"name": "distance_tester",
+		"_postman_id": "2beef71d-086f-99b9-555e-29b3ed29e171",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/personnel_login_server/update/",
+			"request": {
+				"url": "http://127.0.0.1:8000/personnel_login_server/update/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "personnel_id",
+							"value": "P7946",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.575281 88.432512)",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "status",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "c",
+							"value": "rang de",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/personnel_login_server/update/",
+			"request": {
+				"url": "http://127.0.0.1:8000/personnel_login_server/update/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "personnel_id",
+							"value": "P7943",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.574726 88.43366)",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "status",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "c",
+							"value": "college_more",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/personnel_login_server/update/",
+			"request": {
+				"url": "http://127.0.0.1:8000/personnel_login_server/update/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "personnel_id",
+							"value": "P7942",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.573389 88.43308)",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "status",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "c",
+							"value": "pinnacle",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/personnel_login_server/update/",
+			"request": {
+				"url": "http://127.0.0.1:8000/personnel_login_server/update/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "personnel_id",
+							"value": "P7856",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.574726 88.43366)",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "status",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "c",
+							"value": "pinnacle",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/emergency/notify/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"unit\"] = jsonData.personnel_id === \"P7856\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/emergency/notify/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_adhaar_number",
+							"value": "123456789011",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "emergency_type",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.574211 88.434287)",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "c",
+							"value": "iem",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/emergency/notify/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"unit\"] = jsonData.personnel_id === \"P7943\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/emergency/notify/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_adhaar_number",
+							"value": "123456789011",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "emergency_type",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.574211 88.434287)",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "c",
+							"value": "iem",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/emergency/notify/ copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"unit\"] = jsonData.personnel_id === \"P7942\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://127.0.0.1:8000/emergency/notify/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_adhaar_number",
+							"value": "123456789011",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "emergency_type",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "location",
+							"value": "POINT(22.574211 88.434287)",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "c",
+							"value": "iem",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
