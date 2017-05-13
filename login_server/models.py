@@ -17,5 +17,6 @@ class User(models.Model):
     blood_group = models.CharField(max_length=255)
     password = models.CharField(max_length=255, blank=False)
     location = models.PointField(blank=True, null=True)
-
+    emergency_contact_name = models.CharField(max_length=255, blank=True)
+    emergency_contact_number = models.CharField(max_length=10, blank=True)
 # TODO emergency contact
