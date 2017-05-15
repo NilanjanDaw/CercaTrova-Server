@@ -26,7 +26,10 @@ def account_registration(request):
         serializer = UserSerializer(data, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
+        mutable = request.POST._mutable
+        request.POST._mutable = True
         request.data['password'] = Encryption.decrypt(request.data['password'])
+        request.POST._mutable = mutable
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -42,7 +45,11 @@ def account_registration(request):
 """
 @api_view(['POST'])
 def validate_client(request):
+    mutable = request.POST._mutable
+    request.POST._mutable = True
     request.data['password'] = Encryption.decrypt(request.data['password'])
+    request.POST._mutable = mutable
+
     user_id = request.data['user_id']
     password = request.data['password']
     profile_data = User.objects.filter(email_id=user_id, password=password)

@@ -26,5 +26,3 @@ def pkcs5_unpad(s):
     return s[0:-ord(s[-1])]
 def pkcs5_pad(s):
     return s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * chr(BLOCK_SIZE - len(s) % BLOCK_SIZE)
-
-encrypt(raw_input("Enter plaintext: "))

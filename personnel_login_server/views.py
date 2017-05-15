@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from personnel_login_server.models import EmergencyPersonnel
 from personnel_login_server.serializer import EmergencyPersonnelSerializer
-
+from cerca_trova import Encryption
 """
     API endpoint to create and list new EmergencyPersonnel accounts
     @param request The payload body contained within the API request
@@ -25,6 +25,10 @@ def account_registration(request):
         serializer = EmergencyPersonnelSerializer(data, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
+        mutable = request.POST._mutable
+        request.POST._mutable = True
+        request.data['password'] = Encryption.decrypt(request.data['password'])
+        request.POST._mutable = mutable
         serializer = EmergencyPersonnelSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -41,6 +45,11 @@ def account_registration(request):
 """
 @api_view(['POST'])
 def account_authentication(request):
+    mutable = request.POST._mutable
+    request.POST._mutable = True
+    request.data['password'] = Encryption.decrypt(request.data['password'])
+    request.POST._mutable = mutable
+    
     personnel_id = request.data['personnel_id']
     password = request.data['password']
     print(personnel_id)
