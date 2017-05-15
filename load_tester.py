@@ -10,8 +10,9 @@ headers = {
     'cache-control': "no-cache",
     }
 def test(name="thread"):
+    ping_start = time.time()
     response = requests.request("POST", url, data=payload, headers=headers)
-    print"\n%s %s" % (response.status_code, time.ctime(time.time()))
+    print"\nping_start=%s ping_response=%s status_code=%s" % (ping_start, time.ctime(time.time()), response.status_code)
 
 try:
     threads = []

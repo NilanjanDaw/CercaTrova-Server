@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from login_server.models import User
 from login_server.serializer import UserSerializer
+from cerca_trova import Encryption
 
 """
     API endpoint to create and list new user accounts
@@ -25,6 +26,7 @@ def account_registration(request):
         serializer = UserSerializer(data, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
+        request.data['password'] = Encryption.decrypt(request.data['password'])
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -40,6 +42,7 @@ def account_registration(request):
 """
 @api_view(['POST'])
 def validate_client(request):
+    request.data['password'] = Encryption.decrypt(request.data['password'])
     user_id = request.data['user_id']
     password = request.data['password']
     profile_data = User.objects.filter(email_id=user_id, password=password)
