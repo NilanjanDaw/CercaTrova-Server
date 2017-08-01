@@ -1,6 +1,6 @@
 # CercaTrova
 Design Lab project
-- Server side code repository
+- CercaTrova, meaning Seek and ye Shall Find, was developed as part of our Designn Lab coursework and is a real-time Emergency Redressal System with Android Apps as frontend and a Django PostgreSQL powered backend.
 
 ## Important Links
 - [Server Repository](https://github.com/NilanjanDaw/CercaTrova-Server)
